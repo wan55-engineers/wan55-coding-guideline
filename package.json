@@ -1,7 +1,7 @@
 {
   "name": "wan55-coding-guidelines",
   "version": "1.0.0",
-  "description": "WAN55のコーディングガイドライン - VitePressで構築された静的サイト",
+  "description": "WAN55 Web制作コーディングガイドライン",
   "type": "module",
   "scripts": {
     "dev": "vitepress dev docs",
@@ -21,8 +21,8 @@
     "documentation"
   ],
   "author": "WAN55",
-  "license": "MIT",
-  "private": false,
+  "license": "UNLICENSED",
+  "private": true,
   "devDependencies": {
     "vitepress": "^1.0.0",
     "vue": "^3.4.0"

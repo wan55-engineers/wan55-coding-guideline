@@ -1,140 +1,91 @@
-# Coding Guidelines
+# Wan55 Coding Guidelines
 
 [![Deploy to GitHub Pages](https://github.com/<USERNAME>/<REPO>/actions/workflows/deploy.yml/badge.svg)](https://github.com/<USERNAME>/<REPO>/actions/workflows/deploy.yml)
 
-コーディング規約とベストプラクティスをまとめた静的サイトです。VitePress で構築され、GitHub Pages で公開されています。
+WAN55のWeb制作におけるコーディングガイドラインです。
 
-## 📖 公開URL
+## 📖 公開ドキュメント
 
 **🔗 https://\<USERNAME\>.github.io/\<REPO\>/**
 
 > **Note**: `<USERNAME>` と `<REPO>` は実際のGitHubユーザー名とリポジトリ名に置き換えてください。
 
-## 🎯 目的
+## 🎯 このリポジトリについて
 
-このリポジトリは、以下の目的で運用されています：
+HTML/CSS/JavaScript を中心としたWeb制作のコーディングガイドラインを管理・公開しています。
 
-- **社内コーディング規約の統一**: チーム内で参照できる共通ガイドライン（必要に応じて委託先にも共有）
-- **継続的な改善**: Pull Request ベースで誰でも提案・改善に参加可能
-- **自動デプロイ**: main ブランチへのマージで自動的にサイトが更新される
+### 目的
 
-## 🚀 ローカル起動方法
+- 社内チームおよび協力会社との制作品質の統一
+- ベストプラクティスの共有と継続的な改善
+- 静的サイトとして公開し、誰でも参照可能に
 
-### 必要な環境
+### 運用方針
 
-- Node.js 18 以上
+- 本リポジトリは社内専用（書き込み権限は社員のみ）
+- 公開ドキュメントサイトは外部からも閲覧可能
+- Pull Request ベースで誰でも提案・改善に参加可能
 
-### セットアップ手順
+詳しくは [LICENSE](LICENSE) を参照してください。
+
+## 🚀 クイックスタート
 
 ```bash
-# 1. リポジトリをクローン
+# リポジトリをクローン
 git clone https://github.com/<USERNAME>/<REPO>.git
 cd <REPO>
 
-# 2. 依存パッケージをインストール
-npm install
+# 依存パッケージをインストール
+npm ci
 
-# 3. 開発サーバーを起動
+# 開発サーバーを起動
 npm run dev
+# → http://localhost:5173 でプレビュー
 ```
 
-起動後、ブラウザで **http://localhost:5173** にアクセスしてください。
+### 必要な環境
 
-ファイルを編集すると、ブラウザが自動的にリロードされます。
+- Node.js 18以上
+- npm（Node.jsに同梱）
 
-## 📝 コントリビュート方法
+## 📝 コントリビュート
 
-このガイドラインへの改善提案は大歓迎です！
+ガイドラインへの改善提案を歓迎します。
 
-### 基本フロー
+詳細な貢献方法は **[CONTRIBUTING.md](CONTRIBUTING.md)** を参照してください。
 
-1. **Issue を作成**: 改善案や追加したいルールを提案
-2. **ブランチを作成**: `feature/your-topic-name` など
-3. **ドキュメントを編集**: `docs/` 配下のMarkdownファイルを修正
-4. **Pull Request を作成**: わかりやすいタイトルと説明を記載
-5. **レビュー**: チームでレビューし、承認後マージ
-6. **自動デプロイ**: main にマージされると自動的にサイトが更新されます
+### 簡単な流れ
 
-### ルール追加のテンプレート
+1. Issue で提案内容を共有
+2. ブランチを作成（`feature/your-topic`）
+3. `docs/` 配下のMarkdownを編集
+4. Pull Request を作成
+5. レビュー → マージ → 自動デプロイ
 
-新しいルールを追加する際は、以下の構成を推奨します：
-
-```markdown
-# タイトル
-
-## 結論
-（何をすべきか、端的に）
-
-## 理由
-（なぜそのルールが必要か）
-
-## 例
-（良い例と悪い例）
-
-## 例外
-（このルールが適用されない特殊ケース）
-
-## 自動化
-（ESLint、Prettier などでどう強制するか）
-```
-
-詳しくは [CONTRIBUTING.md](CONTRIBUTING.md) を参照してください。
-
-## 📁 ディレクトリ構成
+## 📁 主なディレクトリ構成
 
 ```
-.
-├── .github/
-│   └── workflows/
-│       └── deploy.yml         # GitHub Pages デプロイワークフロー
-├── docs/                      # ドキュメントソース（Markdown）
-│   ├── .vitepress/
-│   │   └── config.ts          # VitePress 設定ファイル
-│   ├── index.md               # トップページ
-│   ├── rules/                 # コーディング規約
-│   │   ├── naming.md
-│   │   ├── typescript.md
-│   │   └── react.md
-│   └── recipes/               # ベストプラクティス・パターン集
-│       └── patterns.md
-├── package.json               # Node.js プロジェクト設定
-├── .gitignore
-├── LICENSE
-└── README.md                  # このファイル
+docs/
+├── rules/                     # コーディングルール
+│   ├── common.md             # 共通ルール
+│   ├── html.md               # HTML制作ルール
+│   ├── css.md                # CSS制作ルール
+│   ├── javascript.md         # JavaScript制作ルール
+│   └── images.md             # 画像制作ルール
+└── .vitepress/
+    └── config.ts             # VitePress設定
 ```
 
 ## 🛠️ 技術スタック
 
 - **静的サイトジェネレーター**: [VitePress](https://vitepress.dev/)
-- **フレームワーク**: [Vue.js](https://vuejs.org/) (内部使用)
 - **ホスティング**: GitHub Pages
 - **CI/CD**: GitHub Actions
 
-## 📦 ビルドコマンド
-
-| コマンド | 説明 |
-|---------|------|
-| `npm run dev` | 開発サーバーを起動（ホットリロード） |
-| `npm run build` | 本番用ビルド |
-| `npm run preview` | ビルドしたサイトをプレビュー |
-| `npm run clean` | ビルド成果物を削除 |
-
-## 🔧 GitHub Pages 設定
-
-初回デプロイ時のみ、以下の手順が必要です：
-
-1. GitHubリポジトリの **Settings** → **Pages** を開く
-2. **Source** で「GitHub Actions」を選択
-3. main ブランチにプッシュすると、自動的にデプロイが開始されます
-
 ## 📜 ライセンス
 
-このプロジェクトは [MIT License](LICENSE) の下で公開されています。
-
-## 🤝 サポート
-
-質問や問題がある場合は、[Issues](https://github.com/<USERNAME>/<REPO>/issues) で報告してください。
+本リポジトリは社内専用のプロプライエタリライセンスです。詳細は [LICENSE](LICENSE) を参照してください。
 
 ---
 
-**Made with ❤️ by WAN55**
+**© 2026 WAN55**

@@ -4,25 +4,80 @@
 
 このドキュメントでは、ガイドラインの改善や新規ルールの追加方法について説明します。
 
-## 🎯 貢献の種類
+## 貢献の流れ（概要）
+
+```
+Issue作成 → ブランチ作成 → ローカル編集 → コミット → PR作成 → レビュー → マージ → 自動デプロイ
+```
+
+## 貢献の種類
 
 以下のような貢献を歓迎します：
 
-- **新しいルールの追加**: Web制作（HTML/CSS/JavaScript）のベストプラクティスや規約の提案
-- **既存ルールの改善**: より明確な説明や実践的な例の追加
-- **誤字脱字の修正**: タイポや文法の修正
-- **コード例の改善**: 実プロジェクトで使える具体例の追加
-- **チェックリストの拡充**: 制作時の確認項目の追加・改善
+- 新しいルールの追加: Web制作（HTML/CSS/JavaScript）のベストプラクティスや規約の提案
+- 既存ルールの改善: より明確な説明や実践的な例の追加
+- 誤字脱字の修正: タイポや文法の修正
+- コード例の改善: 実プロジェクトで使える具体例の追加
+- チェックリストの拡充: 制作時の確認項目の追加・改善
 
-## ⚡️ クイックスタート
+## ドキュメント規約
+
+### 用語の統一
+
+- 「コーディングガイドライン」で統一（コーディング規約は使わない）
+- 「Issue」「Pull Request (PR)」で統一
+- 文体: です・ます調
+
+### 外部リンクポリシー
+
+- 必ずMarkdown形式で記載: `[MDN](https://developer.mozilla.org/)`
+- 許可するリンク: 公式ドキュメント、広く認知された技術記事
+- 推奨: MDN Web Docs, WHATWG仕様, W3C, Google Web Fundamentals
+- 非推奨: 個人ブログ、古すぎる記事（2年以上前など、ただし、公式仕様書や現在も有効な不変の原則についてはこの限りではありません）
+
+### 開発ツール設定（推奨）
+
+**Prettier / markdownlint**: コードフォーマットを統一するため、VS Codeで以下を推奨：
+
+1. VS Code拡張機能をインストール:  
+   - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+   - [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+
+2. VS Code設定を有効化 (設定 > `Editor: Format On Save` → ON)
+
+3. 保存時に自動フォーマットされるようになります
+
+### 画像管理
+
+- 画像保存先: `docs/public/images/`
+- ファイル名: ケバブケース推奨 `example-screenshot.png`
+- Markdownからの参照: `![altテキスト](/images/example-screenshot.png)`
+- 画像サイズ: 横幅800px以下を推奨（ページ読み込み速度のため）
+
+## クイックスタート
+
+### 前提条件
+
+- このリポジトリへのpush権限がある（社内メンバー）
+- mainブランチは保護されており、featureブランチを使ったPR運用
+- fork運用は行わない
+
+### 必要な環境
+
+- Node.js: 18以上（推奨: 20 LTS）
+- パッケージマネージャー: npm（Node.jsに同梱）
+- Volta/asdf/nvmなどでバージョン管理を推奨
+
+### セットアップ手順
 
 ```bash
 # 1. リポジトリをクローン（初回のみ）
+# 例: git clone https://github.com/wan55-engineers/wan55-coding-guideline.git
 git clone <YOUR_REPO_URL>
 cd wan55-coding-guideline
 
-# 2. 依存パッケージをインストール
-npm install
+# 2. 依存パッケージをインストール（lockfileからの再現性を保証）
+npm ci
 
 # 3. ブランチを作成
 git checkout -b feature/your-topic
@@ -47,14 +102,15 @@ git push origin feature/your-topic
 **重要**: mainブランチは保護されており、直接pushできません。必ずPull Requestを経由してマージしてください。
 
 ### 保護設定
-- ✅ Pull Request必須
-- ✅ 1人以上の承認が必要
-- ✅ GitHub Actionsのビルド成功必須
-- ✅ 古いレビュー承認は無効化
+
+- Pull Request必須
+- 1人以上の承認が必要
+- GitHub Actionsのビルド成功必須
+- 古いレビュー承認は無効化
 
 これにより、常に品質の高いドキュメントが保たれます。
 
-## 🤝 貢献の流れ
+## 貢献の流れ
 
 ### 1. Issue を作成（推奨）
 
@@ -104,19 +160,22 @@ git pull origin main
 git checkout -b feature/add-react-hooks-rule
 ```
 
-**ブランチ命名規則**:
+**ブランチ命名規則** (Conventional Commits準拠):
 
 | プレフィックス | 用途 | 例 |
 |--------------|------|----|
-| `feature/` | 新規ルール追加 | `feature/add-bem-naming` |
+| `feature/` | 新規ルール・機能追加 | `feature/add-bem-naming` |
 | `fix/` | 誤字脱字・リンク切れ修正 | `fix/typo-in-html-rules` |
-| `docs/` | サイト構成変更 | `docs/update-sidebar` |
-| `improve/` | 既存ルール改善 | `improve/css-examples` |
+| `docs/` | ドキュメント構成変更 | `docs/update-sidebar` |
+| `refactor/` | 既存ルールの再構成 | `refactor/css-structure` |
+| `chore/` | ビルド・設定変更 | `chore/update-vitepress` |
 
 **命名のコツ**:
 - 短く具体的に（30文字以内推奨）
 - 小文字とハイフンのみ使用
-- Issue番号を含めてもOK: `feature/issue-23-add-bem`
+- Issue番号参照: `feature/23-add-bem`
+
+**運用形態**: このリポジトリは社内用のため、forkではなくブランチ運用を行います。
 
 ### 3. ドキュメントを編集
 
@@ -133,13 +192,19 @@ git checkout -b feature/add-react-hooks-rule
 
 何をすべきか、端的に記載。箇条書き推奨。
 
-- ✅ こうする
-- ❌ こうしない
-- 💡 推奨: こういう場合はこう
+**適用範囲**: HTML/CSS/JavaScript（該当する技術を記載）  
+**強制度**: MUST（必須）/ SHOULD（推奨）/ MAY（任意）  
+**自動検出**: ESLint / markdownlint / 不可  
+**対象ブラウザ**: Browserslistに従う / IE11必須など
+
+- [推奨] こうする
+- [非推奨] こうしない
+- [注意] こういう場合はこう
 
 ## 理由
 
 なぜこのルールが必要か、背景や問題点を説明。
+過去に発生したトラブル事例やコードレビューで頻出した指摘事項を具体的に書くと他メンバーの納得感が得られやすくなります。
 
 ### メリット1: 保守性向上
 
@@ -157,7 +222,7 @@ git checkout -b feature/add-react-hooks-rule
 
 **実際のプロジェクトで使える具体例を記載**。
 
-### ✅ Good（推奨）
+### Good（推奨）
 
 ```html
 <!-- 良い例: 説明を添える -->
@@ -167,7 +232,7 @@ git checkout -b feature/add-react-hooks-rule
 </div>
 ```
 
-### ❌ Bad（非推奨）
+### Bad（非推奨）
 
 ```html
 <!-- 悪い例: なぜダメかを説明 -->
@@ -177,7 +242,16 @@ git checkout -b feature/add-react-hooks-rule
 </div>
 ```
 
-**なぜダメか**: クラス名が短すぎて意味不明。
+**問題点**: クラス名が短すぎて意味不明。保守性が低い。
+
+### 例外的に許容されるケース
+
+```html
+<!-- 外部ライブラリのクラス名は変更不可 -->
+<div class="swiper-container">
+  <!-- ライブラリ仕様に従う -->
+</div>
+```
 
 ## 例外
 
@@ -197,12 +271,12 @@ git checkout -b feature/add-react-hooks-rule
 
 ## 参考資料
 
-公式ドキュメントや信頼できる記事へのリンク:
+外部リンクポリシーに従って記載（詳細は「ドキュメント規約」参照）。
 
-- [MDN Web Docs](https://developer.mozilla.org/)
-- [W3C仕様](https://www.w3.org/)
-- [Google Web Fundamentals](https://developers.google.com/web)
-```
+- [MDN Web Docs - HTML](https://developer.mozilla.org/ja/docs/Web/HTML)
+- [WHATWG HTML Living Standard](https://html.spec.whatwg.org/)
+- [Google Web Fundamentals](https://developers.google.com/web/fundamentals)
+
 
 ## 📁 ファイル構成
 
@@ -221,7 +295,7 @@ docs/
     └── config.ts           # サイト設定（サイドバー等）
 ```
 
-#### サイドバーへの追加
+### サイドバーへの追加
 
 新規ファイルを作成したら、`docs/.vitepress/config.ts` の `sidebar` セクションに追加:
 
@@ -277,8 +351,8 @@ npm run preview
 意味のある単位でコミットします。
 
 ```bash
-git add docs/rules/react-hooks.md mkdocs.yml
-git commit -m "feat: React Hooks のルールを追加"
+git add docs/rules/accessibility.md docs/.vitepress/config.ts
+git commit -m "feat: アクセシビリティルールを追加"
 ```
 
 **コミットメッセージ規約**（Conventional Commits）:
@@ -293,29 +367,32 @@ git commit -m "feat: React Hooks のルールを追加"
 
 | Type | 説明 | 例 |
 |------|------|----|
-| `feat` | 新規ルール追加 | `feat: BEM命名規則を追加` |
+| `feat` | 新規ルール・機能追加 | `feat: BEM命名規則を追加` |
 | `fix` | 誤字・リンク修正 | `fix: HTML例のタグ閉じ忘れ修正` |
-| `docs` | サイト構成変更 | `docs: サイドバー順序を変更` |
-| `improve` | 既存ルール改善 | `improve: CSS例をより実践的に` |
-| `chore` | ビルド・設定変更 | `chore: VitePress 1.1.0に更新` |
+| `docs` | ドキュメント構成変更 | `docs: サイドバー順序を変更` |
+| `refactor` | 既存ルールの再構成 | `refactor: CSS例をより実践的に` |
+| `chore` | ビルド・設定・依存更新 | `chore: VitePress 1.1.0に更新` |
+| `style` | フォーマットのみ変更 | `style: インデント修正` |
 
 **Good Examples**:
 ```bash
 git commit -m "feat: CSS Grid レイアウトルールを追加"
 git commit -m "fix: 画像最適化ガイドのリンク切れ修正"
-git commit -m "improve: JavaScript命名規則に具体例を追加 (#15)"
+git commit -m "refactor: JavaScript命名規則に具体例を追加 (#15)"
 ```
 
 **Bad Examples**:
 ```bash
-git commit -m "update"  # ❌ 何を更新したか不明
-git commit -m "色々修正"  # ❌ 英語推奨
-git commit -m "WIP"  # ❌ 作業中はコミットしない
+git commit -m "update"  # NG: 何を更新したか不明
+git commit -m "色々修正"  # NG: 英語推奨
+git commit -m "WIP"  # NG: 作業中はコミットしない
 ```
 
 ### 6. Pull Request を作成
 
 GitHub にプッシュして Pull Request を作成します。
+
+Note: PR作成画面を開くと、標準のテンプレートが自動で読み込まれます。必要事項を記入して送信してください。
 
 ```bash
 git push origin feature/add-bem-naming
@@ -323,20 +400,19 @@ git push origin feature/add-bem-naming
 
 **PRタイトル例**:
 ```
-✅ feat: BEM命名規則をCSS制作ルールに追加
-✅ fix: HTML制作ルールの誤字修正
-✅ improve: JavaScript例をより実践的に改善
-❌ 更新  # 何を更新したか不明
-❌ fix  # 何を修正したか不明
+Good: feat: BEM命名規則をCSS制作ルールに追加
+Good: fix: HTML制作ルールの誤字修正
+Bad: 更新  # 何を更新したか不明
+Bad: fix  # 何を修正したか不明
 ```
 
 **PR説明テンプレート**:
 ```markdown
-## 📝 変更内容
+## 変更内容
 
 BEM（Block Element Modifier）命名規則を追加しました。
 
-## 🎯 目的
+## 目的
 
 CSS命名の統一性を高め、保守性を向上させる。
 
@@ -345,14 +421,16 @@ CSS命名の統一性を高め、保守性を向上させる。
 - `docs/rules/css.md`: BEMセクション追加
 - `docs/.vitepress/config.ts`: （変更なし）
 
-## ✅ チェックリスト
+## チェックリスト
 
+**手動確認**:
 - [x] `npm run dev` で動作確認
 - [x] `npm run build` が成功
-- [x] リンク切れなし
-- [x] 誤字脱字チェック済み
 - [x] ルールテンプレートに従っている
 - [x] 実践的なコード例を含む
+
+**自動確認** (GitHub Actions):
+- [x] ビルド成功（Actions未整備の項目は手動確認に含める）
 
 ## 📷 スクリーンショット
 
@@ -368,7 +446,8 @@ Closes #15
 - 例が実践的か
 - 他のCSS命名規則との整合性
 ```
-
+> **ヒント**: GitHubにIssue/PRテンプレートを設定すると、上記フォーマットが自動入力されます。  
+> 詳細は [.github/ISSUE_TEMPLATE/](https://docs.github.com/ja/communities/using-templates-to-encourage-useful-issues-and-pull-requests) を参照。
 ### 7. レビューと修正
 
 レビュアーからフィードバックがあった場合は、修正してプッシュします。
@@ -377,18 +456,22 @@ Closes #15
 # 修正後
 git add .
 git commit -m "fix: レビュー指摘事項を修正"
-git push origin feature/add-react-hooks-rule
+git push origin feature/add-accessibility-rule
 ```
+
+**プレビュー環境**: PR作成後、GitHub Actionsが自動的にビルドを実行します。ビルドが成功すれば、レビュアーは本番と同じ環境で変更内容を確認できます。
+
+> **将来的に**: Vercel Preview Deploysなどを導入すれば、PR毎に一時的なプレビューURLが自動生成され、レビューが更に効率化されます。
 
 ### 8. マージ
 
 承認されたら、main ブランチにマージされます。マージ後、GitHub Actions が自動的にサイトをデプロイします。
 
-## ✅ レビュー基準
+## レビュー基準
 
-Pull Request は以下の観点でレビューされます：
+Pull Requestは以下の観点でレビューされます：
 
-### 📖 内容の質
+### 内容の質
 
 - [ ] **明確性**: ルールが具体的で理解しやすいか
 - [ ] **実践性**: 実プロジェクトで使える内容か
@@ -396,7 +479,7 @@ Pull Request は以下の観点でレビューされます：
 - [ ] **網羅性**: 例外ケースも考慮されているか
 - [ ] **整合性**: 既存ルールと矛盾していないか
 
-### ✍️ 文章・表現
+### 文章・表現
 
 - [ ] **正確性**: 誤字脱字がないか
 - [ ] **トーン**: 統一されたスタイルか（です・ます調）
@@ -404,7 +487,7 @@ Pull Request は以下の観点でレビューされます：
 - [ ] **構成**: テンプレートに沿っているか
 - [ ] **可読性**: 見出し・箇条書きで読みやすいか
 
-### 💻 技術・実装
+### 技術・実装
 
 - [ ] **ビルド**: `npm run build` が成功するか
 - [ ] **リンク**: 内部リンク・外部リンクが有効か
@@ -412,70 +495,51 @@ Pull Request は以下の観点でレビューされます：
 - [ ] **画像**: 画像パスが正しく、表示されるか
 - [ ] **検索**: ビルド後に検索で見つかるか
 
-### 🎨 コード例の質
+### コード例の質
 
 - [ ] **実践性**: 実際に使える例か（架空すぎないか）
 - [ ] **Good/Bad**: 良い例・悪い例の両方があるか
 - [ ] **説明**: なぜGood/Badなのか理由が添えられているか
 - [ ] **動作**: コピペして動くコードか（可能な限り）
+- [ ] **例外ケース**: 許容される例外も記載されているか
 
-## 🤔 よくある質問
+## よくある質問
 
 ### Q: どのくらいの粒度でルールを作るべきですか？
 
-**A**: 1つのルールは1つの明確な原則に焦点を当てるべきです。例：
+**A**: 1つのルールは1つの原則に焦点を当てる。例：
 
-- ✅ Good: 「CSSクラス命名規則」「HTML意味付けタグ」を別々に
-- ❌ Bad: 「フロントエンド全般のルール」を1ページに詰め込む
+- Good: 「CSSクラス命名規則」「HTML意味付けタグ」を別々に
+- Bad: 「フロントエンド全般のルール」を1ページに詰め込む
 
 ### Q: 小さな修正（誤字など）でもPRが必要ですか？
 
-**A**: はい、mainブランチ保護のため、どんな小さな変更でもPR必須です。
-
-軽微な修正の場合:
-```bash
-git checkout -b fix/typo-in-css
-# 修正
-git commit -m "fix: CSS制作ルールの誤字修正"
-git push origin fix/typo-in-css
-# PR作成（レビュー後すぐマージ可能）
-```
+**A**: はい。mainブランチへの直接pushは禁止です。
 
 ### Q: 特定のプロジェクトだけのルールも追加できますか？
 
-**A**: はい。ただし適用範囲を明記してください：
-
-```markdown
-> ⚠️ **適用範囲**: このルールはECサイトプロジェクトのみで使用
-```
+**A**: 可能です。ルール冒頭に `**適用範囲**: ECサイトのみ` と明記してください。
 
 ### Q: 既存のルールに異議がある場合は？
 
-**A**: Issue で議論してください。建設的なフィードバック大歓迎です。
-
-```markdown
-タイトル: [議論] CSS命名規則にスネークケースを許可すべきか
-
-ラベル: discussion
-
-（議論内容）
-```
+**A**: Issueで議論を開始し、ラベル `discussion` を付けて提案してください。
 
 ### Q: レビューはどのくらいで返ってきますか？
 
-**A**: 目安は2営業日以内ですが、緊急の場合はSlack等で連絡してください。
+**A**: 2営業日以内を目安としています。緊急時はSlackで連絡してください。
 
 ### Q: 承認後、自分でマージしていいですか？
 
-**A**: はい。GitHub Actionsのビルドが✅になっていれば、承認後すぐマージOKです。
+**A**: はい。GitHub Actionsが成功していれば即座にマージ可能です。
 
-## 📞 サポート
+## サポート
 
-質問や不明点がある場合は、以下の方法でお問い合わせください：
+質問や不明点がある場合は、以下で連絡してください：
 
-- **GitHub Issues**: 一般的な質問や提案
-- **Pull Request のコメント**: 特定の変更に関する質問
+- GitHub Issue: 一般的な質問や提案
+- Pull Requestコメント: 特定の変更に関する質問
+- Slack: 緊急時や運用相談
 
 ---
 
-あなたの貢献を心よりお待ちしています！🎉
+あなたの貢献をお待ちしています！

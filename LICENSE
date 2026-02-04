@@ -1,21 +1,24 @@
-MIT License
+Proprietary License (Internal Use) + Public Documentation Viewing Terms
 
-Copyright (c) 2026 <COPYRIGHT_HOLDER>
+Copyright (c) 2026 WAN55 All Rights Reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. 定義
+「本リポジトリ」: 本ソフトウェアのソースコード、設定ファイル、コンテンツ原稿、画像等の一切。
+「公開成果物」: GitHub Pages等で公開される静的サイト(HTML/CSS/JS)およびその表示内容。
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+2. 本リポジトリの利用許諾（社内限定）
+本リポジトリはWAN55の社内利用を目的として提供されます。
+WAN55の従業員および正式に認可された関係者のみが、本リポジトリを使用、複製、変更できます。
+本リポジトリの配布、再配布、再使用許諾、第三者提供、社外への開示を禁止します。
+ただし、第3条に定める公開成果物の閲覧許可は、この禁止に抵触しません。
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+3. 公開成果物の閲覧許可（社外閲覧OK）
+WAN55は公開成果物について、第三者による閲覧およびリンクを許可します。
+公開成果物の全部または一部の複製、転載、改変、再配布、二次利用、スクレイピングによる再公開、
+および商用利用は、WAN55の書面による事前許可なく禁止します。
+（必要なら例外: 引用は、適用法令の範囲で可。）
+
+4. 無保証
+本ソフトウェアは「現状有姿」で提供され、明示または黙示を問わず、
+商品性、特定目的適合性、権利非侵害を含む一切の保証を行いません。
+WAN55は、本ソフトウェアまたは公開成果物の利用に起因する損害について責任を負いません。
