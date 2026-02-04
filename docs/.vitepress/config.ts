@@ -11,7 +11,7 @@ export default defineConfig({
   ],
   
   // GitHub Pages (Project Pages)
-  base: '/wan55-cording-gideline/',
+  base: '/wan55-coding-guideline/',
   
   themeConfig: {
     nav: [
@@ -45,11 +45,11 @@ export default defineConfig({
     },
     
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/wan55-engineers/wan55-cording-gideline' }
+      { icon: 'github', link: 'https://github.com/wan55-engineers/wan55-coding-guideline' }
     ],
     
     editLink: {
-      pattern: 'https://github.com/wan55-engineers/wan55-cording-gideline/edit/main/docs/:path',
+      pattern: 'https://github.com/wan55-engineers/wan55-coding-guideline/edit/main/docs/:path',
       text: 'このページを編集'
     },
     
