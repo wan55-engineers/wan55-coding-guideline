@@ -1,0 +1,33 @@
+{
+  "name": "wan55-coding-guidelines",
+  "version": "1.0.0",
+  "description": "WAN55のコーディングガイドライン - VitePressで構築された静的サイト",
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs",
+    "clean": "rm -rf docs/.vitepress/dist docs/.vitepress/cache"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/<USERNAME>/<REPO>.git"
+  },
+  "keywords": [
+    "coding-guidelines",
+    "style-guide",
+    "best-practices",
+    "vitepress",
+    "documentation"
+  ],
+  "author": "WAN55",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "vitepress": "^1.0.0",
+    "vue": "^3.4.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
