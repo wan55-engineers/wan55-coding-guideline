@@ -44,10 +44,10 @@ Web制作における各技術のコーディング規約
 
 上記目的で最適化されたガイドラインの品質を保つために、必要に応じて積極的に見直し・更新を行い、共有・周知を図ります。
 
-改善提案は [GitHub Issues](https://github.com/<USERNAME>/<REPO>/issues) または Pull Request でお願いします。
+改善提案は [GitHub Issues](https://github.com/wan55-engineers.github.io/wan55-coding-guideline/issues) または Pull Request でお願いします。
 
 ---
 
 ## 📄 ライセンス
 
-このガイドラインは [MIT License](https://github.com/<USERNAME>/<REPO>/blob/main/LICENSE) の下で公開されています。
+このガイドラインは [MIT License](https://github.com/wan55-engineers.github.io/wan55-coding-guideline/blob/main/LICENSE) の下で公開されています。

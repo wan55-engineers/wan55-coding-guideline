@@ -1,6 +1,6 @@
 # Wan55 Coding Guidelines
 
-[![Deploy to GitHub Pages](https://github.com/<USERNAME>/<REPO>/actions/workflows/deploy.yml/badge.svg)](https://github.com/<USERNAME>/<REPO>/actions/workflows/deploy.yml)
+[![Deploy to GitHub Pages](https://github.com/wan55-coding-guideline/actions/workflows/deploy.yml/badge.svg)](https://github.com/wan55-coding-guideline/actions/workflows/deploy.yml)
 
 WAN55のWeb制作におけるコーディングガイドラインです。
 
