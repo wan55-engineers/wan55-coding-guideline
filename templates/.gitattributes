@@ -1,0 +1,55 @@
+# デフォルト: テキストは自動判定してLFに正規化
+* text=auto eol=lf
+
+# Windowsスクリプト
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# シェルは確実にテキスト扱い（自動判定に依存しない）
+*.sh  text eol=lf
+
+# 画像
+*.png  -text
+*.jpg  -text
+*.jpeg -text
+*.gif  -text
+*.ico  -text
+*.webp -text
+*.avif -text
+
+# 動画
+*.mp4  -text
+*.webm -text
+*.mov  -text
+
+# 音声
+*.mp3  -text
+*.wav  -text
+*.ogg  -text
+*.m4a  -text
+
+# フォント
+*.ttf   -text
+*.otf   -text
+*.woff  -text
+*.woff2 -text
+
+# ドキュメント/アーカイブ/バイナリ
+*.pdf  -text
+*.zip  -text
+*.wasm -text
+*.db   -text
+
+# Office
+*.xlsx -text
+*.xlsm -text
+*.docx -text
+*.pptx -text
+
+# SVGはテキストとして差分を管理
+*.svg text eol=lf
+
+# ロックファイルは統計から除外（差分は残る）
+package-lock.json linguist-generated=true
+yarn.lock         linguist-generated=true
+pnpm-lock.yaml    linguist-generated=true

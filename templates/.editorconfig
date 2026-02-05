@@ -1,0 +1,24 @@
+# EditorConfig: https://editorconfig.org/
+
+root = true
+
+# すべてのファイルに適用
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# Pythonは4スペースが標準
+[*.py]
+indent_size = 4
+
+# makeはコマンド行の先頭がタブ
+[Makefile]
+indent_style = tab
+
+# Markdownは末尾スペースで改行を表現するため、トリムしない
+[*.md]
+trim_trailing_whitespace = false

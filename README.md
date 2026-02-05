@@ -1,14 +1,12 @@
 # Wan55 Coding Guidelines
 
-[![Deploy to GitHub Pages](https://github.com/wan55-coding-guideline/actions/workflows/deploy.yml/badge.svg)](https://github.com/wan55-coding-guideline/actions/workflows/deploy.yml)
+[![Deploy to GitHub Pages](https://github.com/wan55-engineers/wan55-coding-guideline/actions/workflows/deploy.yml/badge.svg)](https://github.com/wan55-engineers/wan55-coding-guideline/actions/workflows/deploy.yml)
 
 WAN55のWeb制作におけるコーディングガイドラインです。
 
 ## 📖 公開ドキュメント
 
-**🔗 https://\<USERNAME\>.github.io/\<REPO\>/**
-
-> **Note**: `<USERNAME>` と `<REPO>` は実際のGitHubユーザー名とリポジトリ名に置き換えてください。
+**🔗 [https://wan55-engineers.github.io/wan55-coding-guideline/](https://wan55-engineers.github.io/wan55-coding-guideline/)**
 
 ## 🎯 このリポジトリについて
 
@@ -32,8 +30,8 @@ HTML/CSS/JavaScript を中心としたWeb制作のコーディングガイドラ
 
 ```bash
 # リポジトリをクローン
-git clone https://github.com/<USERNAME>/<REPO>.git
-cd <REPO>
+git clone https://github.com/wan55-engineers/wan55-coding-guideline.git
+cd wan55-coding-guideline
 
 # 依存パッケージをインストール
 npm ci

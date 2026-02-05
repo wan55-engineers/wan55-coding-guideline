@@ -1,27 +1,22 @@
 # 共通ルール
 
-プロジェクト全体で適用される基本ルールです。
+プロジェクト全体で適用される基本ルールを定めます。
 
-## 文字コード
+## 文字コード・改行コード
+- 文字コード: `UTF-8`（BOMなし）
+- 改行コード: `LF`
 
-**UTF-8** を使用します。
+`.gitattributes` で管理する([テンプレート](https://github.com/wan55-engineers/wan55-coding-guideline/blob/main/templates/.gitattributes)を参考に設定)。
 
-## 改行コード
+## コードスタイル
+- インデント: 2スペース（ソフトタブ）。タブ禁止
+- ファイル末尾: 最終行は改行で終わる（final newline）
 
-**LF（Line Feed）** を使用します。
+`.editorconfig` で管理する([テンプレート](https://github.com/wan55-engineers/wan55-coding-guideline/blob/main/templates/.editorconfig)を参考に設定)。
 
-`.gitattributes` で自動管理されます。
+## バージョン管理（Git）
+- 原則: 生成物はコミットしない（例: `node_modules/`, `*.log`, `.DS_Store`）
+- 例外: `dist/` は差分抽出・公開・デプロイ要件がある場合に限りコミットを許可する
+- 秘密情報はコミットしない（例: `.env`, 鍵ファイル）
 
-**例外**: Windows バッチファイル（`.bat`, `.cmd`, `.ps1`）のみ CRLF を使用
-
-## インデント
-
-**2スペース** を推奨します。
-
-タブ文字は使用しません。
-
-## ファイル末尾
-
-ファイル末尾に必ず空行を1つ挿入します。
-
-`.editorconfig` で自動管理されます。
+`.gitignore` で管理する([テンプレート](https://github.com/wan55-engineers/wan55-coding-guideline/blob/main/templates/.gitignore)を参考に設定)
