@@ -13,7 +13,7 @@ Browserslist を唯一の基準とする。
 - Autoprefixer による自動ベンダープレフィックス付与を前提とする
 - 手動での `-webkit-` `-moz-` などの記述は禁止
 
-`.browserslist` で管理する（[テンプレート](https://github.com/wan55-engineers/wan55-coding-guideline/blob/main/templates/.browserslist)を参考に設定）。
+`.browserslist` で管理する（[テンプレート](https://github.com/wan55-engineers/wan55-coding-guideline/blob/main/templates/.browserslistrc)を参考に設定）。
 
 ### 1.2 品質ゲート
 
@@ -29,7 +29,7 @@ Stylelint で以下を担保する。
 
 インデント・スペース・改行は自動整形に任せる。
 
-`.prettierrc` で管理する（[テンプレート](https://github.com/wan55-engineers/wan55-coding-guideline/blob/main/templates/.prettierrc)を参考に設定）。
+`.prettierrc` で管理する（[テンプレート](https://github.com/wan55-engineers/wan55-coding-guideline/blob/main/templates/.prettierrc.mjs)を参考に設定）。
 
 ## 2. 設計原則
 
@@ -37,12 +37,10 @@ Stylelint で以下を担保する。
 
 詳細度を適切に管理することで解決する。
 
-#### 例外
-
-以下の場合に限り許可する。
-
+::: details 例外
 - ユーティリティクラスでの使用
 - 外部 CSS/JS ライブラリのスタイル上書き
+:::
 
 ### 2.1 セレクタ設計
 
@@ -72,13 +70,13 @@ Stylelint で以下を担保する。
 }
 ```
 
-#### 例外
-
-CMS出力などでクラス付与ができず、かつ対象が一意に特定できる場合に限り許可する。
+::: details 例外：CMS出力などでクラス付与ができない場合
+対象が一意に特定できる場合に限り許可する。
 以下の方法で詳細度を抑える。
 
 - 属性セレクタで指定する（例: `[id='card']`）
 - 擬似クラスで指定する（例:`:where()`, `:is()`）
+:::
 
 
 ### 2.2 Defensive なCSS設計
@@ -142,20 +140,6 @@ Webサイトは継続的に更新・改修が発生する。
 /* ✅ Good - 背景色だけ変更 */
 .card {
   background-color: #fff;
-}
-```
-
-#### 例外
-
-リセット層やベーススタイルでは明示的にデフォルト値を指定してよい。
-
-```css
-@layer reset {
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
 }
 ```
 
