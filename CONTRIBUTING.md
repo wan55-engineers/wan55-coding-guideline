@@ -20,63 +20,78 @@ Issue作成 → ブランチ作成 → ローカル編集 → コミット → P
 - コード例の改善: 実プロジェクトで使える具体例の追加
 - チェックリストの拡充: 制作時の確認項目の追加・改善
 
-## ドキュメント規約
+## 1. ドキュメント規約
 
-### 用語の統一
+### 1.1 用語の統一
 
 - 「コーディングガイドライン」で統一（コーディング規約は使わない）
 - 「Issue」「Pull Request (PR)」で統一
 - 文体: です・ます調
 
-### 外部リンクポリシー
+### 1.2 外部リンクポリシー
 
-- 必ずMarkdown形式で記載: `[MDN](https://developer.mozilla.org/)`
-- 許可するリンク: 公式ドキュメント、広く認知された技術記事
-- 推奨: MDN Web Docs, WHATWG仕様, W3C, Google Web Fundamentals
-- 非推奨: 個人ブログ、古すぎる記事（2年以上前など、ただし、公式仕様書や現在も有効な不変の原則についてはこの限りではありません）
+必ずMarkdown形式で記載する。
 
-### 開発ツール設定（推奨）
+- 許可: 公式ドキュメント、広く認知された技術記事
+- 推奨: MDN Web Docs、WHATWG仕様、W3C、Google Web Fundamentals
+- 非推奨: 個人ブログ、古い記事（2年以上前。ただし、公式仕様書や不変の原則は除く）
 
-**Prettier / markdownlint**: コードフォーマットを統一するため、VS Codeで以下を推奨：
+### 1.3 Markdown記法
 
-1. VS Code拡張機能をインストール:  
+VitePressの拡張記法を活用できます。
+
+::: tip
+補足情報やヒントを記載
+:::
+
+::: warning
+注意事項を記載
+:::
+
+::: details クリックで詳細を表示
+詳細な説明を折りたたみで記載
+:::
+
+詳細は[VitePress Markdownガイド](https://vitepress.dev/ja/guide/markdown)を参照。
+
+### 1.4 開発ツール設定
+
+コードフォーマットを統一するため、VS Codeで以下を推奨：
+
+1. 拡張機能をインストール
    - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
    - [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+2. VS Code設定を有効化（設定 > `Editor: Format On Save` → ON）
 
-2. VS Code設定を有効化 (設定 > `Editor: Format On Save` → ON)
+### 1.5 画像管理
 
-3. 保存時に自動フォーマットされるようになります
+- 保存先: `docs/public/images/`
+- ファイル名: ケバブケース（例: `example-screenshot.png`）
+- 参照: `![altテキスト](/images/example-screenshot.png)`
+- サイズ: 横幅800px以下を推奨
 
-### 画像管理
+## 2. クイックスタート
 
-- 画像保存先: `docs/public/images/`
-- ファイル名: ケバブケース推奨 `example-screenshot.png`
-- Markdownからの参照: `![altテキスト](/images/example-screenshot.png)`
-- 画像サイズ: 横幅800px以下を推奨（ページ読み込み速度のため）
-
-## クイックスタート
-
-### 前提条件
+### 2.1 前提条件
 
 - このリポジトリへのpush権限がある（社内メンバー）
 - mainブランチは保護されており、featureブランチを使ったPR運用
 - fork運用は行わない
 
-### 必要な環境
+### 2.2 必要な環境
 
 - Node.js: 18以上（推奨: 20 LTS）
-- パッケージマネージャー: npm（Node.jsに同梱）
-- Volta/asdf/nvmなどでバージョン管理を推奨
+- パッケージマネージャー: npm
+- バージョン管理: Volta/asdf/nvmなどを推奨
 
-### セットアップ手順
+### 2.3 セットアップ手順
 
 ```bash
 # 1. リポジトリをクローン（初回のみ）
-# 例: git clone https://github.com/wan55-engineers/wan55-coding-guideline.git
 git clone <YOUR_REPO_URL>
 cd wan55-coding-guideline
 
-# 2. 依存パッケージをインストール（lockfileからの再現性を保証）
+# 2. 依存パッケージをインストール
 npm ci
 
 # 3. ブランチを作成
@@ -97,11 +112,13 @@ git push origin feature/your-topic
 # 7. GitHubでPull Request作成
 ```
 
-## mainブランチ保護について
+## 3. mainブランチ保護について
 
-**重要**: mainブランチは保護されており、直接pushできません。必ずPull Requestを経由してマージしてください。
+::: warning
+mainブランチは保護されており、直接pushできません。必ずPull Requestを経由してマージしてください。
+:::
 
-### 保護設定
+### 3.1 保護設定
 
 - Pull Request必須
 - 1人以上の承認が必要
@@ -110,9 +127,9 @@ git push origin feature/your-topic
 
 これにより、常に品質の高いドキュメントが保たれます。
 
-## 貢献の流れ
+## 4. 貢献の流れ
 
-### 1. Issue を作成（推奨）
+### 4.1 Issue を作成（推奨）
 
 大きな変更を加える前に、まず Issue を作成して提案内容を共有してください。
 
@@ -150,9 +167,9 @@ git push origin feature/your-topic
 - https://getbem.com/
 ```
 
-### 2. ブランチを作成
+### 4.2 ブランチを作成
 
-main ブランチから作業用ブランチを作成します。
+mainブランチから作業用ブランチを作成します。
 
 ```bash
 git checkout main
@@ -177,7 +194,7 @@ git checkout -b feature/add-react-hooks-rule
 
 **運用形態**: このリポジトリは社内用のため、forkではなくブランチ運用を行います。
 
-### 3. ドキュメントを編集
+### 4.3 ドキュメントを編集
 
 #### 新規ルールを追加する場合
 
@@ -278,7 +295,7 @@ git checkout -b feature/add-react-hooks-rule
 - [Google Web Fundamentals](https://developers.google.com/web/fundamentals)
 
 
-## 📁 ファイル構成
+#### ファイル構成
 
 ```
 docs/
@@ -295,9 +312,9 @@ docs/
     └── config.ts           # サイト設定（サイドバー等）
 ```
 
-### サイドバーへの追加
+#### サイドバーへの追加
 
-新規ファイルを作成したら、`docs/.vitepress/config.ts` の `sidebar` セクションに追加:
+新規ファイルを作成したら、`docs/.vitepress/config.ts` のサイドバーに追加します。
 
 ```typescript
 sidebar: {
@@ -320,9 +337,11 @@ sidebar: {
 
 **順序**: 関連性の高いものを近くに配置。
 
-### 4. ローカルで確認
+### 4.4 ローカルで確認
 
-**必須チェック**: PRを出す前に必ず以下を確認してください。
+::: warning 必須チェック
+PRを出す前に必ず以下を確認してください。
+:::
 
 ```bash
 # 開発サーバーを起動
@@ -346,7 +365,7 @@ npm run preview
 - [ ] **検索**: 検索機能で見つかるか（ビルド後）
 - [ ] **誤字脱字**: VS Codeのスペルチェック等を活用
 
-### 5. コミット
+### 4.5 コミット
 
 意味のある単位でコミットします。
 
@@ -388,11 +407,13 @@ git commit -m "色々修正"  # NG: 英語推奨
 git commit -m "WIP"  # NG: 作業中はコミットしない
 ```
 
-### 6. Pull Request を作成
+### 4.6 Pull Requestを作成
 
-GitHub にプッシュして Pull Request を作成します。
+GitHubにプッシュしてPull Requestを作成します。
 
-Note: PR作成画面を開くと、標準のテンプレートが自動で読み込まれます。必要事項を記入して送信してください。
+::: tip
+PR作成画面を開くと、標準のテンプレートが自動で読み込まれます。必要事項を記入して送信してください。
+:::
 
 ```bash
 git push origin feature/add-bem-naming
@@ -448,7 +469,7 @@ Closes #15
 ```
 > **ヒント**: GitHubにIssue/PRテンプレートを設定すると、上記フォーマットが自動入力されます。  
 > 詳細は [.github/ISSUE_TEMPLATE/](https://docs.github.com/ja/communities/using-templates-to-encourage-useful-issues-and-pull-requests) を参照。
-### 7. レビューと修正
+### 4.7 レビューと修正
 
 レビュアーからフィードバックがあった場合は、修正してプッシュします。
 
@@ -463,15 +484,15 @@ git push origin feature/add-accessibility-rule
 
 > **将来的に**: Vercel Preview Deploysなどを導入すれば、PR毎に一時的なプレビューURLが自動生成され、レビューが更に効率化されます。
 
-### 8. マージ
+### 4.8 マージ
 
-承認されたら、main ブランチにマージされます。マージ後、GitHub Actions が自動的にサイトをデプロイします。
+承認されたら、mainブランチにマージされます。マージ後、GitHub Actionsが自動的にサイトをデプロイします。
 
-## レビュー基準
+## 5. レビュー基準
 
-Pull Requestは以下の観点でレビューされます：
+Pull Requestは以下の観点でレビューされます。
 
-### 内容の質
+### 5.1 内容の質
 
 - [ ] **明確性**: ルールが具体的で理解しやすいか
 - [ ] **実践性**: 実プロジェクトで使える内容か
@@ -479,7 +500,7 @@ Pull Requestは以下の観点でレビューされます：
 - [ ] **網羅性**: 例外ケースも考慮されているか
 - [ ] **整合性**: 既存ルールと矛盾していないか
 
-### 文章・表現
+### 5.2 文章・表現
 
 - [ ] **正確性**: 誤字脱字がないか
 - [ ] **トーン**: 統一されたスタイルか（です・ます調）
@@ -487,7 +508,7 @@ Pull Requestは以下の観点でレビューされます：
 - [ ] **構成**: テンプレートに沿っているか
 - [ ] **可読性**: 見出し・箇条書きで読みやすいか
 
-### 技術・実装
+### 5.3 技術・実装
 
 - [ ] **ビルド**: `npm run build` が成功するか
 - [ ] **リンク**: 内部リンク・外部リンクが有効か
@@ -495,7 +516,7 @@ Pull Requestは以下の観点でレビューされます：
 - [ ] **画像**: 画像パスが正しく、表示されるか
 - [ ] **検索**: ビルド後に検索で見つかるか
 
-### コード例の質
+### 5.4 コード例の質
 
 - [ ] **実践性**: 実際に使える例か（架空すぎないか）
 - [ ] **Good/Bad**: 良い例・悪い例の両方があるか
@@ -503,7 +524,7 @@ Pull Requestは以下の観点でレビューされます：
 - [ ] **動作**: コピペして動くコードか（可能な限り）
 - [ ] **例外ケース**: 許容される例外も記載されているか
 
-## よくある質問
+## 6. よくある質問
 
 ### Q: どのくらいの粒度でルールを作るべきですか？
 
@@ -532,13 +553,20 @@ Pull Requestは以下の観点でレビューされます：
 
 **A**: はい。GitHub Actionsが成功していれば即座にマージ可能です。
 
-## サポート
+## 7. サポート
 
-質問や不明点がある場合は、以下で連絡してください：
+質問や不明点がある場合は、以下で連絡してください。
 
 - GitHub Issue: 一般的な質問や提案
 - Pull Requestコメント: 特定の変更に関する質問
 - Slack: 緊急時や運用相談
+
+## 8. 参考資料
+
+- [VitePress公式ドキュメント](https://vitepress.dev/ja/)
+- [VitePress Markdownガイド](https://vitepress.dev/ja/guide/markdown)
+- [Conventional Commits](https://www.conventionalcommits.org/ja/)
+- [GitHub Flow](https://docs.github.com/ja/get-started/quickstart/github-flow)
 
 ---
 

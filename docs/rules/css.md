@@ -1,7 +1,7 @@
 # CSS制作ルール
 
 :::tip
-文字コード・改行コードは [common.md](./common.md) を参照。
+文字コード・改行コードは [共通ルール](./common.md) を参照。
 :::
 
 ## 1. 前提
@@ -143,6 +143,14 @@ Webサイトは継続的に更新・改修が発生する。
 }
 ```
 
+### 2.4 font-size は rem を使用する
+
+ユーザーのブラウザ設定（既定文字サイズ変更や文字サイズ拡大機能）に追従させるため、`font-size` には `rem` を使用する。
+::: warning
+  `html` に `font-size: 62.5%` を指定して `1rem` を `10px` 換算にする手法は採用しない。<br>
+  外部 CSS を取り込むと `rem` の基準差で表示が崩れる可能性があるため。
+:::
+
 ## 3. 命名規約
 
 ### 3.1 クラス命名の基本原則
@@ -163,7 +171,7 @@ Webサイトは継続的に更新・改修が発生する。
 #### 2. 予測可能で平易な単語を選ぶ
 
 - 一般的で誤解のない略語は許容（例: `.navigation` → `.nav`）
-- 難解な単語は避ける（例: `ephemeral` より `temp`）
+- 難解な単語は避ける（例: `auxiliary` より `support`）
 - 日本独自概念はローマ字を許容（例: `omikuji` `torii`）
 
 #### 3. 記法を統一する（ケバブケース）
@@ -189,9 +197,9 @@ Webサイトは継続的に更新・改修が発生する。
 </div>
 ```
 
-#### Modifier と状態・バリエーション
+#### 状態の管理
 
-Modifier の乱立を避ける。状態は ARIA 属性、デザイン差分は `data-*` を推奨する。
+状態は属性値で管理できる場合はそちらを優先する。
 
 ```html
 <!-- ❌ Bad - Modifierで状態管理 -->
@@ -201,9 +209,6 @@ Modifier の乱立を避ける。状態は ARIA 属性、デザイン差分は `
 <!-- ✅ Good - 状態（意味がある） -->
 <button class="button" aria-pressed="true">トグル</button>
 <button class="button" disabled>無効</button>
-
-<!-- ✅ Good - data属性でバリエーション管理 -->
-<button class="button" data-variant="primary" data-size="large">ボタン</button>
 ```
 
 #### クラス付与の省略（末端要素）
@@ -268,11 +273,11 @@ scss記法を使用する。
 @import 'mixins';
 ```
 
+
 ## 参考資料
 
 - [CSS Specifications (W3C)](https://www.w3.org/Style/CSS/)
 - [Sass Documentation](https://sass-lang.com/documentation)
 - [MindBEMding](https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/)
 - [MDN Web Docs - CSS](https://developer.mozilla.org/ja/docs/Web/CSS)
-- [CSS @layer](https://developer.mozilla.org/ja/docs/Web/CSS/@layer)
 - [Every Layout](https://every-layout.dev/)

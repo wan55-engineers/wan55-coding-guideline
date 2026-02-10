@@ -13,8 +13,7 @@ export default defineConfig({
 
   themeConfig: {
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'ルール', link: '/rules/common' },
+      { text: '制作ルール', link: '/rules/common' },
       { text: 'チェックリスト', link: '/rules/checklist' }
     ],
 
