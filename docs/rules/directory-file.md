@@ -1,180 +1,72 @@
 # ディレクトリ・ファイル作成ルール
 
-## ディレクトリ作成ルール
+Google Search Centralの[URL構造ベストプラクティス](https://developers.google.com/search/docs/crawling-indexing/url-structure)に準拠し、SEO最適化とメンテナンス性を両立する。
 
-### 使用文字
+## ルールの優先順位
 
-ディレクトリ名には以下の文字のみを使用する。
+本ドキュメントのルールは次の順で適用する。下位ルールが上位ルールを上書きする。
 
-- **`a`～`z`** までの小文字のアルファベット（1バイト）
-- **`0`～`9`** までの英数字（1バイト）
-- **`-`（ハイフン）** と **`_`（アンダースコア）**（いずれも1バイト）
-- **スペースは使用しない**
+1. 共通ルール: すべてのファイルとディレクトリに適用
+2. ディレクトリとファイルの個別ルール: 用途や配置に応じて適用
+3. 例外: 言語やフレームワークの慣習と仕様を最優先
 
-:::warning 例外
-システム等からの自動で出力されるファイルに関しては上記の限りではない。
-:::
+## 1. 共通ルール
 
-**✅ Good**
+プロジェクト内のすべてのファイルとディレクトリに適用する。
 
-```
-project/
-├── assets/
-├── images/
-├── css/
-├── js/
-├── common-components/
-└── user_data/
-```
+- 小文字のみ: `About.html` ではなく `about.html` 
+- ASCII文字限定: `a-z`、`0-9`と許可記号`-`、`.`のみ使用する。日本語、全角英数字、スペースは使用しない
+- 重複禁止: `Home.tsx` と `home.tsx`のようなケース違いの同名を作らない
+- 予約語とバージョン表記の禁止:
+  - Windows予約語`con`, `prn`, `aux`, `nul`等を使用しない
+  - 指定がない限り、名前に日付、`v1`、`copy`、`old`等を含めない。Gitで管理する
 
-**❌ Bad**
+## 1.1 適用スコープ
 
-```
-project/
-├── Assets/          # 大文字
-├── Images Files/    # スペース
-├── CSS/             # 大文字
-└── 画像/            # 2バイト文字
-```
+- 公開面: `dist/`, `public/`。生成されるURLパスに対応するディレクトリとHTML。小文字kebab-case固定。大文字と`_`は使用しない
+- 実装面: `src/` 配下。言語とフレームワークの慣習に従った命名を許可する
 
-## ファイル作成ルール
+## 2. ディレクトリ作成ルール
 
-### 1. ファイル名使用文字
-
-ファイル名には以下の文字のみを使用する。
-
-- **`a`～`z`** までの小文字のアルファベット（1バイト）
-- **`0`～`9`** までの英数字（1バイト）
-- **`-`（ハイフン）** と **`_`（アンダースコア）**（いずれも1バイト）
-- **ファイル名には拡張子を必ずつける**
-- **2バイト文字とスペースは使用しない**
-
-:::warning 例外
-システム等からの自動で出力されるファイルに関しては上記の限りではない。
-:::
-
-**✅ Good**
-
-```
-index.html
-style.css
-main.js
-user-profile.html
-header_component.js
-logo-2024.svg
-```
-
-**❌ Bad**
-
-```
-Index.html          # 大文字
-style               # 拡張子なし
-main script.js      # スペース
-会社概要.html       # 2バイト文字
-```
-
+共通ルールに従う。Google検索のクロール効率への影響を考慮する。
 :::tip
-画像ファイルの命名規則や書き出しルールについては [images.md](./images.md) を参照
+Googleは単語区切りにハイフン `-`を[推奨](https://developers.google.com/search/docs/crawling-indexing/url-structure?hl=ja#use-hyphens-to-separate-words)している。
 :::
 
-## ディレクトリ構成例
+## 3. ファイル作成ルール
 
-```
-project/
-├── index.html
-├── about/
-│   └── index.html
-├── assets/
-│   ├── css/
-│   │   ├── style.css
-│   │   └── reset.css
-│   ├── js/
-│   │   ├── main.js
-│   │   └── modules/
-│   │       ├── slider.js
-│   │       └── modal.js
-│   └── images/
-│       ├── common/
-│       │   ├── logo.svg
-│       │   ├── logo@2x.png
-│       │   └── header_bg.jpg
-│       ├── top/
-│       │   ├── hero_ph_01.jpg
-│       │   └── hero_ph_01_sp.jpg
-│       └── icons/
-│           ├── icon_arrow.svg
-│           ├── icon_search.svg
-│           └── icon_menu.svg
-└── fonts/
-    ├── NotoSansJP-Regular.woff2
-    └── NotoSansJP-Bold.woff2
-```
+共通ルールに従う。開発言語やツールの慣習に基づくケースは例外として許可する。
 
-## 自動チェック
+### 3.1 一般ファイル
+- **複合拡張子**: テスト、型定義、ビルド成果物などはエコシステムの慣習に従う<br>
+  例: `component.test.tsx`, `styles.module.css`, `bundle.min.js`
 
-### ファイル名検証スクリプト
+### 3.2 言語仕様とツールによる例外
 
-```javascript
-// validate-filenames.js
-const fs = require('fs');
-const path = require('path');
+#### 部分ファイルとパーシャル
+- `src`配下などで部分ファイルを管理する場合、 `_`から始まるファイル名を許可する。コンパイラへの書き出し抑制を目的とする。<br>
+  例: `_variables.scss`, `_template.pug`
 
-const VALID_PATTERN = /^[a-z0-9_-]+(\.[a-z0-9]+)?$/;
+#### サードパーティ製ライブラリ
+- 外部から導入し、ファイル名変更が困難なものは元の命名を維持する。<br>
+  例: `jquery-3.7.1.min.js`
 
-function validateFileName(filename) {
-  return VALID_PATTERN.test(filename);
-}
+#### フレームワーク特有の命名
+- フレームワークの慣習に従い、キャメルケースとパスカルケースを許可する。<br>
+  例: `UserCard.tsx`, `[id].tsx`, `(group)/page.tsx`
 
-function checkDirectory(dir) {
-  const files = fs.readdirSync(dir);
-  const errors = [];
-  
-  files.forEach(file => {
-    const fullPath = path.join(dir, file);
-    const stat = fs.statSync(fullPath);
-    
-    if (!validateFileName(file)) {
-      errors.push(`Invalid filename: ${fullPath}`);
-    }
-    
-    if (stat.isDirectory()) {
-      errors.push(...checkDirectory(fullPath));
-    }
-  });
-  
-  return errors;
-}
+### 3.3 特殊なファイル
 
-const errors = checkDirectory('./src');
-if (errors.length > 0) {
-  console.error('❌ Filename validation failed:');
-  errors.forEach(err => console.error(err));
-  process.exit(1);
-} else {
-  console.log('✅ All filenames are valid');
-}
-```
+#### 設定ファイル
 
-### package.json
+`.eslintrc`, `.prettierrc` など、慣習として決まっているドット開始ファイルはそのまま使用する。
 
-```json
-{
-  "scripts": {
-    "validate:filenames": "node scripts/validate-filenames.js"
-  }
-}
-```
+#### 画像ファイル
 
-## 改行コードルール
+画像の命名パターンと状態管理は[画像制作ルール](./images.md) を参照する。
 
-プロジェクト全体で **LF（Line Feed）** を使用します。
-
-`.gitattributes` で自動管理されます。
-
-**例外**: Windows バッチファイル（`.bat`, `.cmd`, `.ps1`）のみ CRLF を使用
 
 ## 参考資料
 
-- [Web Fundamentals - Image Optimization](https://web.dev/fast/#optimize-your-images)
-- [SVG Specification](https://www.w3.org/TR/SVG2/)
-- [Git Attributes Documentation](https://git-scm.com/docs/gitattributes)
+- [URL Structure Best Practices - Google Search Central](https://developers.google.com/search/docs/crawling-indexing/url-structure)
+- [Filenames and file types - Google developer documentation style guide](https://developers.google.com/style/filenames)
