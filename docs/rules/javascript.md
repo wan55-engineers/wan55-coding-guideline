@@ -278,68 +278,9 @@ function Counter() {
 }
 ```
 
-## 7. モダンなJavaScript記法
+## 7. 非同期処理
 
-### 7.1 分割代入
-
-```javascript
-// オブジェクトの分割代入
-const user = { name: 'John', age: 30, email: 'john@example.com' };
-const { name, age } = user;
-
-// 配列の分割代入
-const colors = ['red', 'green', 'blue'];
-const [first, second] = colors;
-
-// 関数の引数で分割代入
-function greetUser({ name, age }) {
-  console.log(`Hello, ${name}! You are ${age} years old.`);
-}
-```
-
-### 7.2 スプレッド演算子
-
-```javascript
-// 配列のコピー
-const original = [1, 2, 3];
-const copy = [...original];
-
-// 配列の結合
-const arr1 = [1, 2];
-const arr2 = [3, 4];
-const combined = [...arr1, ...arr2];
-
-// オブジェクトのコピー・マージ
-const defaults = { theme: 'light', lang: 'ja' };
-const userSettings = { lang: 'en' };
-const settings = { ...defaults, ...userSettings };
-```
-
-### 7.3 オプショナルチェーン
-
-```javascript
-// Good（オプショナルチェーン）
-const userName = user?.profile?.name;
-const firstItem = items?.[0];
-
-// Bad（従来の方法）
-const userName = user && user.profile && user.profile.name;
-```
-
-### 7.4 Null合体演算子
-
-```javascript
-// Good
-const displayName = userName ?? 'ゲスト';
-const count = value ?? 0;
-
-// Bad
-const displayName = userName || 'ゲスト';  // 空文字やfalseも置き換わる
-```
-
-## 8. 非同期処理
-
-### 8.1 async/await
+### 7.1 async/await
 
 **Promiseベースの処理は`async/await`を使用する。**
 
