@@ -5,46 +5,43 @@
 *.bat text eol=crlf
 *.cmd text eol=crlf
 
-# シェルは確実にテキスト扱い（自動判定に依存しない）
-*.sh  text eol=lf
-
 # 画像
-*.png  -text
-*.jpg  -text
-*.jpeg -text
-*.gif  -text
-*.ico  -text
-*.webp -text
-*.avif -text
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.webp binary
+*.avif binary
 
 # 動画
-*.mp4  -text
-*.webm -text
-*.mov  -text
+*.mp4  binary
+*.webm binary
+*.mov  binary
 
 # 音声
-*.mp3  -text
-*.wav  -text
-*.ogg  -text
-*.m4a  -text
+*.mp3  binary
+*.wav  binary
+*.ogg  binary
+*.m4a  binary
 
 # フォント
-*.ttf   -text
-*.otf   -text
-*.woff  -text
-*.woff2 -text
+*.ttf   binary
+*.otf   binary
+*.woff  binary
+*.woff2 binary
 
 # ドキュメント/アーカイブ/バイナリ
-*.pdf  -text
-*.zip  -text
-*.wasm -text
-*.db   -text
+*.pdf  binary
+*.zip  binary
+*.wasm binary
+*.db   binary
 
 # Office
-*.xlsx -text
-*.xlsm -text
-*.docx -text
-*.pptx -text
+*.xlsx binary
+*.xlsm binary
+*.docx binary
+*.pptx binary
 
 # SVGはテキストとして差分を管理
 *.svg text eol=lf
@@ -53,3 +50,7 @@
 package-lock.json linguist-generated=true
 yarn.lock         linguist-generated=true
 pnpm-lock.yaml    linguist-generated=true
+
+# ミニファイ済みファイルは統計・差分から除外
+*.min.js  -diff linguist-generated=true
+*.min.css -diff linguist-generated=true
