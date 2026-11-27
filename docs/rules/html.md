@@ -113,10 +113,10 @@ HTML要素は、その本来の目的に従って使用する。見出しには�
 </button>
 
 <!-- 意味のある画像 -->
-<img src="/images/logo.png" alt="会社ロゴ" width="200" height="50">
+<img src="/img/_common/logo_main.png" alt="会社ロゴ" width="200" height="50">
 
 <!-- 装飾画像 -->
-<img src="/images/decoration.png" alt="" width="100" height="100">
+<img src="/img/top/hero_deco_01.png" alt="" width="100" height="100">
 ```
 
 **❌ Bad**
@@ -142,7 +142,7 @@ HTML要素は、その本来の目的に従って使用する。見出しには�
 </button>
 
 <!-- alt属性なし -->
-<img src="/images/logo.png">
+<img src="/img/_common/logo_main.png">
 ```
 
 ## 5. 画像
@@ -158,23 +158,23 @@ HTML要素は、その本来の目的に従って使用する。見出しには�
 
 ```html
 <!-- コンテンツ画像 -->
-<img src="/images/photo.jpg" alt="写真の説明" width="600" height="400" loading="lazy">
+<img src="/img/company/hero_01.jpg" alt="写真の説明" width="600" height="400" loading="lazy">
 
 <!-- 装飾画像 -->
-<img src="/images/decoration.png" alt="" width="100" height="100" loading="lazy">
+<img src="/img/top/hero_deco_01.png" alt="" width="100" height="100" loading="lazy">
 ```
 
 **❌ Bad**
 
 ```html
 <!-- widthとheightがない -->
-<img src="/images/photo.jpg" alt="写真の説明" loading="lazy">
+<img src="/img/company/hero_01.jpg" alt="写真の説明" loading="lazy">
 
 <!-- loading属性がない -->
-<img src="/images/photo.jpg" alt="写真の説明" width="600" height="400">
+<img src="/img/company/hero_01.jpg" alt="写真の説明" width="600" height="400">
 
 <!-- 装飾画像にダミーのalt -->
-<img src="/images/decoration.png" alt="装飾" width="100" height="100" loading="lazy">
+<img src="/img/top/hero_deco_01.png" alt="装飾" width="100" height="100" loading="lazy">
 ```
 
 :::tip 遅延読み込みの例外
@@ -193,8 +193,8 @@ HTML要素は、その本来の目的に従って使用する。見出しには�
 
 ```html
 <picture>
-  <source media="(min-width:768px)" srcset="/images/large.jpg">
-  <img src="/images/small.jpg" alt="レスポンシブ画像" width="400" height="200" loading="lazy">
+  <source media="(max-width: 767px)" srcset="/img/top/hero_01_sp.jpg">
+  <img src="/img/top/hero_01.jpg" alt="レスポンシブ画像" width="800" height="400" loading="lazy">
 </picture>
 ```
 
@@ -202,8 +202,8 @@ HTML要素は、その本来の目的に従って使用する。見出しには�
 
 ```html
 <!-- CSSで出し分けると両方の画像が読み込まれる -->
-<img src="/images/large.jpg" alt="PC用画像" class="pc-only">
-<img src="/images/small.jpg" alt="SP用画像" class="sp-only">
+<img src="/img/top/hero_01.jpg" alt="PC用画像" class="pc-only">
+<img src="/img/top/hero_01_sp.jpg" alt="SP用画像" class="sp-only">
 ```
 
 ## 6. インタラクティブ要素
@@ -248,14 +248,14 @@ HTML要素は、その本来の目的に従って使用する。見出しには�
 
 ```html
 <a href="./company/index.html">会社概要</a>
-<img src="../images/photo.jpg" alt="写真">
+<img src="../img/company/hero_01.jpg" alt="写真">
 ```
 
 ### ルート相対パス
 
 ```html
 <a href="/company/index.html">会社概要</a>
-<img src="/images/photo.jpg" alt="写真">
+<img src="/img/company/hero_01.jpg" alt="写真">
 ```
 
 :::tip 推奨

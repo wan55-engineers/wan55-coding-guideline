@@ -172,14 +172,14 @@
 
 ```html
 <!-- Good -->
-<img src="/images/logo.png" alt="株式会社サンプル">
-<img src="/images/product.jpg" alt="新商品のスマートフォン">
-<img src="/images/decoration.png" alt="">
+<img src="/img/_common/logo_main.png" alt="株式会社サンプル">
+<img src="/img/top/product_01.jpg" alt="新商品のスマートフォン">
+<img src="/img/top/hero_deco_01.png" alt="">
 
 <!-- Bad -->
-<img src="/images/logo.png">
-<img src="/images/product.jpg" alt="画像">
-<img src="/images/decoration.png" alt="装飾">
+<img src="/img/_common/logo_main.png">
+<img src="/img/top/product_01.jpg" alt="画像">
+<img src="/img/top/hero_deco_01.png" alt="装飾">
 ```
 
 ### キーボードでの操作
