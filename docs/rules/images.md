@@ -119,99 +119,90 @@
 
 ## 画像書き出しルール
 
-### JPG
+### 形式の選び方
 
-**用途**: 色数が多く、サイズの大きい写真などの画像
+| 画像 | 形式 |
+| --- | --- |
+| 写真・色数の多い画像 | WebP |
+| 透過を含む画像 | WebP（透過付き） |
+| ロゴ・アイコン・図形 | SVG |
+| 動きのある画像 | 動画（MP4 / WebM）。GIFアニメは使わない |
 
-**設定**:
-- **圧縮率**: 原則として80%
-- **カラープロファイル**: sRGBに変換してから書き出し
-- Adobe RGBに注意し、必要な場合カラープロファイルを変換
+- WebPを基本にする。案件で指定があれば、JPG・PNGも書き出して `<picture>` で併記する
+- 書き出しの倍率は案件ごとに決め、案件のドキュメントに書く。同じ画像を複数の倍率で置くときは、ファイル名に倍率を付ける（[ファイル名](#ファイル名)）
 
-:::tip
-クオリティに配慮しながら、極力ファイルサイズは軽減すること。
-共有されたPSDの担当デザイナーにカラープロファイルを確認して作業実施。
-:::
+### 共通の設定
 
-**最適化ツール**:
-- [ImageOptim](https://imageoptim.com/) (macOS)
-- [Squoosh](https://squoosh.app/) (Web)
-- [TinyJPG](https://tinyjpg.com/) (Web)
-
-### PNG
-
-**用途**: 透明を含む画像、スプライト用画像など
-
-**PNG-8**: 
-- 主にアイコンや簡単なテキスト画像など
-- 色数の少ない、あるいは透明を含む画像
-
-**PNG-24/PNG-32**:
-- 半透明の画像
-- 色数が多く透明を含む画像
-
-:::warning 注意
-PNG-24/PNG-32はJPGと比べてファイルサイズが大きいので、透過の用途以外では使用しない。
-:::
-
-**pngを使用する場合は軽量化の処理を行うこと。**
-
-**最適化ツール**:
-- [TinyPNG](https://tinypng.com/)
-- [pngquant](https://pngquant.org/)
-
-### SVG
-
-**用途**:
-- 主にアイコン
-- テキスト画像
-- メインのロゴ画像
-
-**メリット**:
-- 拡大縮小しても劣化しない
-- ファイルサイズが小さい（シンプルな図形の場合）
-- CSSで色やサイズを変更可能
-
-#### Illustratorから SVG 書き出し方法
-
-1. **ファイル** → **別名で保存**
-2. ファイル形式で **SVG** を選択
-3. SVGオプションで以下を設定：
-   - SVGプロファイル: **SVG 1.1**
-   - フォント: **SVGに変換** または **アウトライン化**
-   - 画像: **埋め込み**
-   - CSS プロパティ: **スタイル要素**
-   - 小数点以下の桁数: **2**
-
-**書き出し後の最適化**:
-
-[SVGO](https://github.com/svg/svgo) や [SVGOMG](https://jakearchibald.github.io/svgomg/) で最適化を行う。
-
-```bash
-# SVGOのインストールと使用
-npm install -g svgo
-svgo input.svg -o output.svg
-```
+- **カラープロファイル**：sRGBに変換してから書き出す。Adobe RGBなどで作られたPSDは変換で色が変わることがあるので、書き出した画像とデザインを見比べる
+- **メタデータ**：撮影情報や位置情報などは消して書き出す
+- **ファイルサイズ**：見た目を確認しながら、できるだけ小さくする
 
 ### WebP
 
-**用途**: モダンブラウザ向けの画像最適化
+- **品質**：原則として80
+- 透過もWebPのまま書き出す。透過のためにPNGにしない
+- Photoshopから直接書き出すか、[Squoosh](https://squoosh.app/) などで変換する
 
-**メリット**:
-- JPGやPNGより高圧縮
-- 透過に対応
-- ファイルサイズが20-30%小さい
+```html
+<img src="/img/about/hero_01.webp" alt="" width="800" height="400">
+```
 
-**使用例**:
+### JPG・PNGを併記するとき
+
+案件で指定があるときだけ、WebPと一緒に書き出す。
+
+- **JPG**：写真の代わり。品質は原則として80
+- **PNG**：透過を含む画像の代わり。減色や圧縮で軽量化してから置く
+- **最適化ツール**：[ImageOptim](https://imageoptim.com/)（macOS）、[Squoosh](https://squoosh.app/)、[TinyPNG](https://tinypng.com/)
 
 ```html
 <picture>
   <source srcset="/img/about/hero_01.webp" type="image/webp">
-  <img src="/img/about/hero_01.jpg" alt="写真">
+  <img src="/img/about/hero_01.jpg" alt="" width="800" height="400">
 </picture>
+```
+
+### AVIF
+
+WebPよりさらにファイルサイズを小さくできることが多い。一方で、書き出しに時間がかかり、対応しているツールも限られる。案件で指定があるときに使い、WebPを併記する。
+
+```html
+<picture>
+  <source srcset="/img/about/hero_01.avif" type="image/avif">
+  <img src="/img/about/hero_01.webp" alt="" width="800" height="400">
+</picture>
+```
+
+### SVG
+
+**用途**：ロゴ、アイコン、図形や文字だけでできた画像
+
+**メリット**:
+- 拡大縮小しても劣化しない
+- ファイルサイズが小さい（シンプルな図形の場合）
+- CSSで色やサイズを変えられる
+
+写真などのビットマップ画像を含むものはSVGにしない。WebPで書き出す。
+
+#### IllustratorからSVGを書き出す
+
+1. **ファイル** → **書き出し** → **書き出し形式**
+2. ファイルの種類で **SVG** を選ぶ
+3. SVGオプションで次のように設定する
+   - スタイル：**プレゼンテーション属性**（CSSで上書きしやすい）
+   - フォント：**アウトラインに変換**
+   - オブジェクトID：**最小**
+   - 小数点以下の桁数：**2**
+   - 縮小：**オン**
+
+**書き出し後の最適化**：[SVGO](https://svgo.dev/) や [SVGOMG](https://jakearchibald.github.io/svgomg/) で不要な情報を消す。
+
+```bash
+npx svgo input.svg -o output.svg
 ```
 
 ## 参考資料
 
-- [Web Fundamentals - Image Optimization](https://web.dev/fast/#optimize-your-images)
-- [SVG Specification](https://www.w3.org/TR/SVG2/)
+- [Learn Images - web.dev](https://web.dev/learn/images)
+- [画像ファイルの種類と形式ガイド - MDN](https://developer.mozilla.org/ja/docs/Web/Media/Guides/Formats/Image_types)
+- [SVG 2 - W3C](https://www.w3.org/TR/SVG2/)
