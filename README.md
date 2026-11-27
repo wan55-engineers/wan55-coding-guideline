@@ -72,6 +72,8 @@ docs/
 │   └── images.md             # 画像制作ルール
 └── .vitepress/
     └── config.ts             # VitePress設定
+skills/
+└── image-naming/SKILL.md     # 画像命名ルールのAIエージェント向けスキル
 ```
 
 ## 🛠️ 技術スタック
